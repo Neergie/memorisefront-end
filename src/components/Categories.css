@@ -1,0 +1,14 @@
+.categories {
+    background-color: #333;
+    padding: 20px;
+    color: white;
+}
+
+button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+}

@@ -1,0 +1,51 @@
+.page-livres {
+    display: flex;
+    flex-direction: column;
+    /* Les catégories au-dessus de la grille de produits */
+    padding: 20px;
+    background-color: #f5f5f5;
+    /* Couleur de fond légère pour la page */
+    min-height: 100vh;
+    /* Hauteur minimale pour occuper toute la hauteur visible */
+}
+
+.categories-container {
+    margin-bottom: 20px;
+    /* Espace entre les catégories et la grille de produits */
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* Quatre produits par ligne par défaut */
+    gap: 20px;
+    /* Espace entre les produits */
+    padding: 20px;
+    background-color: #ffffff;
+    /* Fond blanc pour la grille de produits */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Ombre légère pour la grille */
+}
+
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+        /* Une colonne sur les petits écrans */
+    }
+}
+
+.product {
+    background-color: #e0e0e0;
+    /* Couleur de fond pour chaque produit */
+    height: 200px;
+    /* Hauteur fixe pour chaque produit */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    /* Couleur de texte pour les produits */
+    font-size: 16px;
+    /* Taille de texte */
+    border-radius: 4px;
+    /* Bordures arrondies pour les produits */
+}

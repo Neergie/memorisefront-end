@@ -1,0 +1,98 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #333;
+    color: white;
+    z-index: 1000;
+}
+
+.navbar-search input {
+    padding: 8px;
+    margin-right: 10px;
+    width: 100%;
+    background-color: aliceblue;
+    /* Couleur de fond claire pour l'input */
+    color: black;
+    /* Changez la couleur du texte en noir */
+    border: 1px solid #ccc;
+    /* Ajoute une bordure subtile si nécessaire */
+}
+
+.navbar-brand {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.navbar-links {
+    display: flex;
+    font-weight: bold;
+}
+
+.navbar-link {
+    padding: 0 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-search input {
+    padding: 8px;
+    margin-right: 10px;
+    width: 100%;
+    background-color: aliceblue;
+}
+
+.navbar-icons {
+    display: flex;
+}
+
+.navbar-icon {
+    color: white;
+    margin-right: 10px;
+}
+
+.hamburger {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+        position: absolute;
+        background-color: #333;
+        top: 48px;
+        /* Assurez-vous que cela correspond à la hauteur de votre barre de navigation */
+        left: 0;
+        right: 0;
+    }
+
+    .navbar-links.show {
+        display: flex;
+    }
+
+    .navbar-link {
+        text-align: center;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .navbar-search input {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .navbar-icon {
+        margin: 5px;
+    }
+}

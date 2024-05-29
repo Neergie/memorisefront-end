@@ -1,0 +1,109 @@
+.formulaire-livre {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    max-width: 800px;
+}
+
+.section-gauche, .section-droite {
+    flex: 1;
+    margin: 10px;
+}
+
+.section-droite {
+    margin-left: 2rem;
+}
+
+.section-gauche {
+    max-width: 300px;
+}
+
+.input-alt-text, input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #5B26F0;
+}
+
+.image-apercu {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.switch-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: black;
+    justify-content: space-between;
+}
+
+.switch {
+position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+
+.slider {
+        position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #5B26F0;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+.btn-envoyer {
+    background-color: #5B26F0;
+    width: 100%;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.formulaire-container {
+    max-width: 800px;
+    margin: 0 auto;
+    color: #fff;
+}
