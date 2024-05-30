@@ -7,50 +7,50 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  .title {
+}
+
+.title {
     color: #ffffff;
     font-size: 24px;
     margin-bottom: 10px;
-  }
-  
-  .register-text {
+}
+
+.register-text {
     color: #ffffff;
     margin-bottom: 20px;
     text-align: center;
-  }
-  
-  .register-text a {
+}
+
+.register-text a {
     color: #b3b3ff;
     text-decoration: none;
-  }
-  
-  .input-group {
+}
+
+.input-group {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
     width: 100%;
     border-bottom: 1px solid #ffffff;
     padding: 5px 0;
-  }
-  
-  .icon {
+}
+
+.icon {
     color: #ffffff;
     margin-right: 10px;
-  }
-  
-  .Inscription input {
+}
+
+Inscription input {
     background-color: transparent;
     border: none;
     outline: none;
-    color: #ffffff!;
+    color: #ffffff !;
     width: 100%;
     border: 0px;
 
-  }
-  
-  .login-button {
+}
+
+.login-button {
     background-color: #6a00ff;
     color: #ffffff;
     border: none;
@@ -59,9 +59,9 @@
     margin-top: 20px;
     cursor: pointer;
     width: 100%;
-  }
-  
-  .google-button {
+}
+
+.google-button {
     background-color: transparent;
     color: #ffffff;
     border: 1px solid #6a00ff;
@@ -70,9 +70,8 @@
     margin-top: 10px;
     cursor: pointer;
     width: 100%;
-  }
-  
-  .google-icon {
+}
+
+.google-icon {
     margin-right: 10px;
-  }
-  
+}

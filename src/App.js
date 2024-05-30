@@ -8,6 +8,8 @@ import PageLivres from './components/PageLivres';
 import Panier from './components/Panier';
 import FormulaireLivre from './components/FormulaireLivre';
 import './App.css';
+import Connexion from './components/Connexion';
+import PageProduit from './components/PageProduit';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="/books" element={<PageLivres />} />
           <Route path="/cart" element={<Panier />} />
           <Route path="/upload" element={<FormulaireLivre />} />
+          <Route path='/login' element={<Connexion />} />
+          <Route path="/book/:id" element={<PageProduit />} />
         </Routes>
       </div>
     </Router>

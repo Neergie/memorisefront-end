@@ -9,7 +9,7 @@ function Inscription() {
       <p className="register-text">
         Déjà un compte ? 
         <br></br>
-        <a href="/register">Se connecter</a>
+        <a href="/login">Se connecter</a>
       </p>
       <div className="input-group">
         <FaEnvelope className="icon" />

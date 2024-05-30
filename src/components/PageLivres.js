@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
-import Categories from './categories';
-import ProductGrid from './productgrid';
-import './PageLivres.css';
-
-
+import GrilleProduits from './productgrid';
 
 const PageLivres = () => {
-    const [selectedCategory, setSelectedCategory] = useState('Tous');
+  const [categorieCourante, setCategorieCourante] = useState('Tous');
 
-    return (
-        <div className="page-livres">
-            <Categories onSelectCategory={setSelectedCategory} />
-            <ProductGrid category={selectedCategory} />
-        </div>
-    );
+  const handleChangeCategorie = (categorie) => {
+    setCategorieCourante(categorie);
+  };
+
+  return (
+    <div>
+      <h1>Liste des Produits</h1>
+      <categorie onChangeCategorie={handleChangeCategorie} />
+      <GrilleProduits categorie={categorieCourante} />
+    </div>
+  );
 };
 
 export default PageLivres;
