@@ -40,12 +40,13 @@
     margin-right: 10px;
   }
   
-  .Inscription input {
+  .input-group input {
     background-color: transparent;
     border: none;
     outline: none;
-    color: #ffffff!;
+    color: #ffffff;
     width: 100%;
+    width: 15rem;
     border: 0px;
 
   }

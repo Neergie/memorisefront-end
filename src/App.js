@@ -10,9 +10,11 @@ import FormulaireLivre from './components/FormulaireLivre';
 import './App.css';
 import Connexion from './components/Connexion';
 import PageProduit from './components/PageProduit';
+import { PanierProvider } from './components/PanierContext';
 
 function App() {
   return (
+    <PanierProvider>
     <Router>
       <div className="App">
         <Navbar /> {/* Menu de navigation */}
@@ -27,6 +29,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+    </PanierProvider>
   );
 }
 
