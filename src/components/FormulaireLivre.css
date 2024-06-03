@@ -7,7 +7,8 @@
     max-width: 800px;
 }
 
-.section-gauche, .section-droite {
+.section-gauche,
+.section-droite {
     flex: 1;
     margin: 10px;
 }
@@ -20,13 +21,43 @@
     max-width: 300px;
 }
 
-.input-alt-text, input, textarea {
+.input-alt-text,
+input,
+textarea,
+select {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     color: #000000;
+    background-color: #f9f9f9;
+    /* Ajouter une couleur de fond légère */
+    transition: border-color 0.3s;
+}
+
+.input-alt-text:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #5B26F0;
+    outline: none;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url('data:image/svg+xml;utf8,<svg fill="none" height="24" stroke="currentColor" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M6 9l6 6 6-6"/></svg>') no-repeat right 10px center;
+    background-color: #f9f9f9;
+    padding-right: 30px;
+    /* espace pour l'icône de la flèche */
+    cursor: pointer;
+}
+
+select[multiple] {
+    background-image: none;
+    /* Pas de flèche pour les sélections multiples */
 }
 
 .image-apercu {
@@ -45,23 +76,22 @@
 }
 
 .switch {
-position: relative;
+    position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
 }
 
-
 .slider {
-        position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
 }
 
 .slider:before {
@@ -100,6 +130,11 @@ input:checked+.slider:before {
     font-size: 16px;
     cursor: pointer;
     border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.btn-envoyer:hover {
+    background-color: #3e1ab3;
 }
 
 .formulaire-container {

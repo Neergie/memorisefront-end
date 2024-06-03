@@ -11,13 +11,16 @@ import './App.css';
 import Connexion from './components/Connexion';
 import PageProduit from './components/PageProduit';
 import { PanierProvider } from './components/PanierContext';
+import SearchResults from './components/SearchResults';
+import Footer from './components/Footer';
+import Historiquecmd from './components/Historiquecmd';
 
 function App() {
   return (
     <PanierProvider>
     <Router>
+      <Navbar /> 
       <div className="App">
-        <Navbar /> {/* Menu de navigation */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Inscription />} />
@@ -26,8 +29,11 @@ function App() {
           <Route path="/upload" element={<FormulaireLivre />} />
           <Route path='/login' element={<Connexion />} />
           <Route path="/book/:id" element={<PageProduit />} />
+          <Route path="/search/:query/:count" element={<SearchResults />} />
+          <Route path="/account" element={<Historiquecmd />} />
         </Routes>
       </div>
+      <Footer />
     </Router>
     </PanierProvider>
   );

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import axios from './axiosConfig'; 
 import './FormulaireLivre.css';
 
 function FormulaireLivre() {
@@ -8,15 +8,42 @@ function FormulaireLivre() {
         altText: '',
         titre: '',
         description: '',
-        auteurs: '',
-        genres: '',
-        editeurs: '',
+        auteurs: [],
+        genres: [],
+        editeurs: [],
         isbn: '',
         datePublication: '',
         stock: '',
         prix: '',
         estEbook: false
     });
+
+    const [options, setOptions] = useState({
+        genres: [],
+        editeurs: [],
+        auteurs: []
+    });
+
+    useEffect(() => {
+        // Récupérer les genres, éditeurs et auteurs depuis l'API
+        const fetchData = async () => {
+            try {
+                const genresResponse = await axios.get('/genres');
+                const editeursResponse = await axios.get('/editors');
+                const auteursResponse = await axios.get('/authors');
+
+                setOptions({
+                    genres: genresResponse.data,
+                    editeurs: editeursResponse.data,
+                    auteurs: auteursResponse.data
+                });
+            } catch (error) {
+                console.error('Erreur lors de la récupération des données:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     const handleInputChange = (event) => {
         const { name, value, type, checked } = event.target;
@@ -35,21 +62,30 @@ function FormulaireLivre() {
         reader.readAsDataURL(file);
     };
 
+    const handleSelectChange = (event) => {
+        const { name, selectedOptions } = event.target;
+        setLivre({
+            ...livre,
+            [name]: Array.from(selectedOptions, option => option.value)
+        });
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
         const data = {
             title: livre.titre,
             description: livre.description,
-            authors: livre.auteurs.split(',').map(auteur => auteur.trim()), // auteur séparé par virugle
-            genres: livre.genres.split(',').map(genre => genre.trim()), // genres séparé par virugle
-            editors: livre.editeurs.split(',').map(editor => editor.trim()), // split = tableau map transforme trim supprimer les espaces
+            authors: livre.auteurs, // auteurs sélectionnés
+            genres: livre.genres, // genres sélectionnés
+            editors: livre.editeurs, // éditeurs sélectionnés
             isbn: livre.isbn,
             publicationDate: livre.datePublication,
             stock: parseInt(livre.stock, 10),
             price: parseFloat(livre.prix),
             ebook: livre.estEbook,
-            coverImage: livre.image || null
+            coverImage: livre.image || null,
+            altImg: livre.altText
         };
 
         axios.post('http://localhost:8000/book/add', data)
@@ -60,9 +96,9 @@ function FormulaireLivre() {
                     altText: '',
                     titre: '',
                     description: '',
-                    auteurs: '',
-                    genres: '',
-                    editeurs: '',
+                    auteurs: [],
+                    genres: [],
+                    editeurs: [],
                     isbn: '',
                     datePublication: '',
                     stock: '',
@@ -110,27 +146,42 @@ function FormulaireLivre() {
                         value={livre.description}
                         onChange={handleInputChange}
                     />
-                    <input
-                        type="text"
+                    <select
                         name="auteurs"
-                        placeholder="Auteurs (IDs séparés par des virgules)"
+                        multiple
                         value={livre.auteurs}
-                        onChange={handleInputChange}
-                    />
-                    <input
-                        type="text"
+                        onChange={handleSelectChange}
+                    >
+                        {options.auteurs.map(auteur => (
+                            <option key={auteur.id} value={auteur.id}>
+                                {auteur.firstname} {auteur.lastname}
+                            </option>
+                        ))}
+                    </select>
+                    <select
                         name="genres"
-                        placeholder="Genres (IDs séparés par des virgules)"
+                        multiple
                         value={livre.genres}
-                        onChange={handleInputChange}
-                    />
-                    <input
-                        type="text"
+                        onChange={handleSelectChange}
+                    >
+                        {options.genres.map(genre => (
+                            <option key={genre.id} value={genre.id}>
+                                {genre.name}
+                            </option>
+                        ))}
+                    </select>
+                    <select
                         name="editeurs"
-                        placeholder="Éditeurs (IDs séparés par des virgules)"
+                        multiple
                         value={livre.editeurs}
-                        onChange={handleInputChange}
-                    />
+                        onChange={handleSelectChange}
+                    >
+                        {options.editeurs.map(editeur => (
+                            <option key={editeur.id} value={editeur.id}>
+                                {editeur.name}
+                            </option>
+                        ))}
+                    </select>
                     <input
                         type="text"
                         name="isbn"

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from './axiosConfig'; 
 import './Inscription.css';
 import { FaEnvelope, FaLock, FaUser } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+
 
 function Inscription() {
   const [email, setEmail] = useState('');
@@ -9,9 +11,12 @@ function Inscription() {
   const [prenom, setPrenom] = useState('');
   const [nom, setNom] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate(); // Initialisation
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
 
     const formData = {
       email,
@@ -20,10 +25,10 @@ function Inscription() {
       lastname: nom
     };
 
-    axios.put('http://localhost:8000/register', formData)
+    axios.post('/register', formData)
       .then(response => {
         console.log('Inscription réussie:', response.data);
-        // Rediriger ou effectuer une autre action après l'inscription réussie
+        navigate('/login'); // après la connexion réussie
       })
       .catch(error => {
         setError('Erreur lors de l\'inscription');
@@ -79,7 +84,6 @@ function Inscription() {
         <button type="submit" className="login-button">S'INSCRIRE</button>
       </form>
       {error && <p className="error-message">{error}</p>}
-      
     </div>
   );
 }

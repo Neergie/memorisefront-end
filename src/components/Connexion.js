@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from './axiosConfig'; 
 import { FaEnvelope, FaLock } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom'; 
-import './Inscription.css';
+import './Connexion.css';
 
 function Connexion() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate(); // Initialisation
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -17,12 +18,13 @@ function Connexion() {
       password
     };
 
-    axios.post('http://localhost:8000/login', formData)
+    axios.post('/login', formData)
       .then(response => {
         const token = response.data.token;
         localStorage.setItem('authToken', token); // Stocker le jeton dans le localstorage
         console.log('Connexion réussie:', response.data);
         navigate('/books'); // après la connexion réussie
+        window.location.reload(); // Rafraichir la page
       })
       .catch(error => {
         setError('Email ou mot de passe incorrect.');

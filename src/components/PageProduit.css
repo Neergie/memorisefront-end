@@ -5,16 +5,16 @@
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
-    max-width: 800px;
+    max-width: 40rem;
     margin: 20px auto;
+    width: 40rem; 
 }
 
 .image-container {
     width: 100%;
     max-width: 10rem;
-    max-height: 8rem;
+    max-height: 10rem;
     margin-bottom: 3rem;
-
 }
 
 .image-container img {
@@ -26,6 +26,7 @@
 .details-container {
     width: 100%;
     text-align: left;
+    margin-top: 2rem;
 }
 
 .details-container h1 {
@@ -50,4 +51,27 @@
     cursor: pointer;
     border-radius: 4px;
     width: 100%;
+    transition: transform 0.2s;
+    /* Transition pour l'effet de mise à l'échelle */
+}
+
+.btn-ajouter-panier:active {
+    transform: scale(0.95);
+    /* Effet de mise à l'échelle au clic */
+}
+
+.btn-ajouter-panier:disabled {
+    background-color: #ccc;
+    color: #666;
+    /* Couleur du texte gris */
+    cursor: not-allowed;
+    /* Change le curseur pour indiquer qu'il est non cliquable */
+    border: 1px solid #aaa;
+}
+
+.message-validation {
+    margin-top: 10px;
+    color: green;
+    font-size: 14px;
+    font-weight: bold;
 }

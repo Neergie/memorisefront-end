@@ -1,20 +1,24 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 const PanierContext = createContext();
 
 export const PanierProvider = ({ children }) => {
-    const [panier, setPanier] = useState([]);
+    const [panier, setPanier] = useState(() => {
+        const storedPanier = localStorage.getItem('panier');
+        return storedPanier ? JSON.parse(storedPanier) : [];
+    });
+
+    useEffect(() => {
+        localStorage.setItem('panier', JSON.stringify(panier));
+    }, [panier]);
 
     const ajouterAuPanier = (produit) => {
-        // Vérifiez si le produit est déjà dans le panier
         const produitExistant = panier.find(item => item.id === produit.id);
         if (produitExistant) {
-            // Incrémentez la quantité si le produit est déjà dans le panier
             setPanier(panier.map(item =>
                 item.id === produit.id ? { ...item, quantity: item.quantity + 1 } : item
             ));
         } else {
-            // Ajoutez le produit au panier avec une quantité initiale de 1
             setPanier([...panier, { ...produit, quantity: 1 }]);
         }
     };
@@ -23,8 +27,12 @@ export const PanierProvider = ({ children }) => {
         setPanier(panier.filter(item => item.id !== id));
     };
 
+    const clearPanier = () => {
+        setPanier([]);
+    };
+
     return (
-        <PanierContext.Provider value={{ panier, ajouterAuPanier, removeItem }}>
+        <PanierContext.Provider value={{ panier, ajouterAuPanier, removeItem, clearPanier }}>
             {children}
         </PanierContext.Provider>
     );

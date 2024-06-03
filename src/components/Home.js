@@ -6,9 +6,14 @@ function Home() {
   return (
     <div className="home-container">
       <h1>Bienvenue dans Memorise</h1>
-      <Link to="/register">
-        <button className="login-button">S'inscrire</button>
-      </Link>
+      <div className="button-container">
+        <Link to="/register">
+          <button className="action-button">S'inscrire</button>
+        </Link>
+        <Link to="/login">
+          <button className="action-button">Connexion</button>
+        </Link>
+      </div>
     </div>
   );
 }

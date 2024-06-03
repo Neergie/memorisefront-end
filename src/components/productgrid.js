@@ -2,61 +2,55 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './ProductGrid.css';
 
-const GrilleProduits = ({ categorie }) => {
+const GrilleProduits = ({ booksCount }) => {
   const [produits, setProduits] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Cette fonction est appelée chaque fois que la catégorie change
   useEffect(() => {
-    setLoading(true); // Indique que le chargement des produits a commencé
-
-    // Fait une requête GET pour obtenir les produits de la catégorie sélectionnée
-    axios.get(`http://localhost:8000/products?categorie=${categorie}`)
+    setLoading(true);
+    axios.get(`http://localhost:8000/books/${booksCount}`)
       .then(response => {
-        // Si la requête réussit, on stocke les produits dans l'état
+        console.log('Données reçues:', response.data);
         setProduits(response.data);
         setLoading(false);
       })
-      .catch(() => {
-        // Gestion erreur ->on arrête le chargement
+      .catch(error => {
+        console.error('Erreur lors de la récupération des produits:', error);
         setProduits([]);
         setLoading(false);
       });
-  }, [categorie]);
+  }, [booksCount]);
 
-  // Fonction pour générer les produits ou les espaces vides si aucun produit n'est disponible
   const renderProduits = () => {
     if (loading) {
       return <div className="loading">Chargement...</div>;
     }
 
     if (produits.length > 0) {
-      return produits.map(produit => (
-        <a href={`/produit/${produit.id}`} className="produit-card" key={produit.id}>
-          <img src={produit.image} alt={produit.nom} />
-          <div>{produit.nom}</div>
-          <div>{produit.prix.toFixed(2)} €</div>
-        </a>
-      ));
+      return (
+        <div className="results-grid">
+          {produits.map(produit => {
+            const imageUrl = produit.coverImage || `${process.env.PUBLIC_URL}/image_par_defaut.jpeg`;
+            const altText = produit.altImg || 'Image du produit';
+            return (
+              <a href={`/book/${produit.id}`} className="produit-card" key={produit.id}>
+                <img src={imageUrl} alt={altText} />
+                <h2>{produit.name}</h2>
+                <p>{produit.price.toFixed(2)} €</p>
+              </a>
+            );
+          })}
+        </div>
+      );
     }
 
     return <div className="produit-vide">Aucun produit à afficher</div>;
   };
 
-  // Fonction pour générer des espaces vides pour compléter la ligne
-  const renderPlaceholders = () => {
-    const placeholders = 4 - (produits.length % 4);
-    return Array.from({ length: placeholders }).map((_, index) => (
-      <div key={index} className="produit-vide">Aucun produit à afficher</div>
-    ));
-  };
-
   return (
     <div className="grille-produits-container">
-      <div className="categories">
-        {renderProduits()}
-        {renderPlaceholders()}
-      </div>
+      <h1>Liste des Produits</h1>
+      {renderProduits()}
     </div>
   );
 };

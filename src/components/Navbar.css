@@ -2,31 +2,28 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 98%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px 15px;
+    padding: 15px 20px;
     background-color: #333;
     color: white;
     z-index: 1000;
 }
 
-.navbar-search input {
-    padding: 8px;
-    margin-right: 10px;
-    width: 100%;
-    background-color: aliceblue;
-    /* Couleur de fond claire pour l'input */
-    color: black;
-    /* Changez la couleur du texte en noir */
-    border: 1px solid #ccc;
-    /* Ajoute une bordure subtile si nécessaire */
+.navbar-brand .logo {
+    width: 100px;
+    /* Ajustez la largeur du logo selon vos besoins */
+    height: auto;
 }
 
-.navbar-brand {
-    font-size: 1rem;
-    font-weight: bold;
+.hamburger {
+    display: none;
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: white;
 }
 
 .navbar-links {
@@ -35,29 +32,39 @@
 }
 
 .navbar-link {
-    padding: 0 10px;
+    padding: 0 15px;
     color: white;
     text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 .navbar-search input {
-    padding: 8px;
-    margin-right: 10px;
+    padding: 0.5rem;
+    margin-right: 0.6rem;
     width: 100%;
     background-color: aliceblue;
 }
 
 .navbar-icons {
-    display: flex;
+    position: relative;
 }
 
 .navbar-icon {
-    color: white;
-    margin-right: 10px;
+    color: rgb(255, 255, 255);
+    margin-right: 0.5rem;
 }
 
-.hamburger {
-    display: none;
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 7px;
+    font-size: 12px;
 }
 
 @media (max-width: 768px) {
@@ -65,16 +72,15 @@
         display: block;
     }
 
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
     .navbar-links {
         flex-direction: column;
-        width: 100%;
         display: none;
-        position: absolute;
-        background-color: #333;
-        top: 48px;
-        /* Assurez-vous que cela correspond à la hauteur de votre barre de navigation */
-        left: 0;
-        right: 0;
+        width: 100%;
     }
 
     .navbar-links.show {
@@ -82,17 +88,21 @@
     }
 
     .navbar-link {
-        text-align: center;
+        padding: 10px;
         width: 100%;
-        padding: 10px 0;
+        text-align: center;
+    }
+
+    .navbar-search {
+        width: 100%;
     }
 
     .navbar-search input {
-        width: 100%;
-        margin: 10px 0;
+        width: 90%;
     }
 
-    .navbar-icon {
-        margin: 5px;
+    .navbar-icons {
+        width: 100%;
+        justify-content: center;
     }
 }
